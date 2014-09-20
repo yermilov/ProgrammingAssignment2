@@ -1,7 +1,16 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## makeCacheMatrix
+## ===============
+## Construct structure that should be used in cacheSolve function for cached 
+## calculation of matrix inverse.
+## Input:
+## x - matrix, for which inversion is needed.
+## Return:
+## Function client should not work with returned object, just pass it 
+## to cacheSolve function.
+## Example:
+## x <- matrix(1:4, 2, 2)
+## y <- makeCacheMatrix(x)
+## z <- cacheSolve(y)
 
 makeCacheMatrix <- function(x = matrix()) {
   inverse <- NULL
@@ -16,10 +25,20 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## cacheSolve
+## ===============
+## Performs cached calculation of matrix inverse.
+## Input:
+## x - special object, constructed on base of need matrix via makeCacheMatrix
+## method.
+## Return:
+## Invertion of matrix, encapsulated in passed object.
+## Example:
+## x <- matrix(1:4, 2, 2)
+## y <- makeCacheMatrix(x)
+## z <- cacheSolve(y)
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
   inverse <- x$getInverse()
   if(!is.null(inverse)) {
     message("result retrieved from cache")
